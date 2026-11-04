@@ -1,0 +1,30 @@
+enabled: false
+items:
+  - organization: "MIT Media Lab & Harvard Ophthalmology AI Lab"
+    role: "Research Intern (joint appointment)"
+    start: "2025-06"
+    end: null
+    summary: "Research on robotic manipulation, advised by Paul Liang and Mengyu Wang."
+    links:
+      - label: "MIT Media Lab"
+        url: "https://www.media.mit.edu/"
+      - label: "Harvard Ophthalmology AI Lab"
+        url: "https://ophai.hms.harvard.edu/"
+
+  - organization: "The University of Texas at Austin"
+    role: "Research Assistant"
+    start: "2025-02"
+    end: null
+    summary: "Research on multimodal learning, advised by Philipp Krähenbühl."
+    links:
+      - label: "Advisor"
+        url: "https://www.philkr.net/"
+
+  - organization: "VCIP Lab, Nankai University"
+    role: "Research Assistant"
+    start: "2024-06"
+    end: "2025-02"
+    summary: "Research at the Visual Computing and Intelligent Perception Lab, advised by Xiang Li."
+    links:
+      - label: "Advisor"
+        url: "https://implus.github.io/"

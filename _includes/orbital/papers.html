@@ -1,0 +1,31 @@
+<section class="papers-section" id="papers" aria-labelledby="papers-title">
+  <header class="papers-heading">
+    <div><span class="section-index mono">03 / SELECTED RESEARCH</span><h2 id="papers-title">Papers</h2></div>
+    {% for link in profile.links %}{% if link.url contains 'scholar.google.com' %}<a class="all-publications" href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}
+  </header>
+  <div class="paper-list">
+    {% for paper in site.data.publications %}
+      <article class="paper-entry{% unless paper.image and paper.image != '' %} paper-entry-text-only{% endunless %}" id="paper-{{ paper.id | slugify }}" aria-labelledby="title-{{ paper.id | slugify }}">
+        {% if paper.image and paper.image != '' %}
+          <figure class="paper-figure">
+            <a class="figure-link" href="{{ paper.image | relative_url }}" target="_blank" rel="noopener noreferrer" data-paper-figure data-title="{{ paper.title | escape }}" aria-label="Enlarge figure: {{ paper.title | escape }}">
+              <div class="figure-mat"><img src="{{ paper.image | relative_url }}" alt="{{ paper.image_alt | default: paper.title | escape }}" loading="lazy" decoding="async"></div>
+              <span class="figure-caption"><span>View full figure</span><span aria-hidden="true">↗</span></span>
+            </a>
+          </figure>
+        {% endif %}
+        <div class="paper-copy">
+          <p class="paper-venue mono">{{ paper.venue | escape }} <span aria-hidden="true">·</span> {{ paper.year | escape }}</p>
+          <h3 id="title-{{ paper.id | slugify }}">{% if paper.links.first.url %}<a href="{{ paper.links.first.url | escape }}" target="_blank" rel="noopener noreferrer">{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h3>
+          <div class="paper-authors">{{ paper.authors | markdownify }}</div>
+          {% if paper.summary and paper.summary != '' %}<div class="paper-summary">{{ paper.summary | markdownify }}</div>{% endif %}
+          {% if paper.links.size > 0 %}
+            <div class="paper-links" aria-label="Resources for {{ paper.title | escape }}">
+              {% for link in paper.links %}<a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label | escape }} <span aria-hidden="true">↗</span></a>{% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

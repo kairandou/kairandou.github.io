@@ -1,0 +1,25 @@
+<section class="hero page-width" aria-labelledby="hero-name">
+  <div class="hero-copy">
+    <p class="eyebrow">EMBODIED INTELLIGENCE / RESEARCH</p>
+    <h1 id="hero-name">{{ profile.name | escape }}</h1>
+    <p class="name-zh" lang="zh-CN">{{ profile.name_zh | escape }}</p>
+    <p class="hero-tagline">{{ profile.tagline | escape }}</p>
+    {% if profile.research_interests.size > 0 %}
+      <ul class="research-interests" aria-label="Research interests">
+        {% for interest in profile.research_interests %}<li>{{ interest | escape }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+    <div class="profile-links">
+      {% for link in profile.links %}
+        <a href="{{ link.url | escape }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="noopener noreferrer"{% endunless %}>{{ link.label | escape }} <span aria-hidden="true">↗</span></a>
+      {% endfor %}
+    </div>
+  </div>
+  <figure class="hero-portrait">
+    <div class="portrait-orbit">
+      <span class="orbit-cross" aria-hidden="true">+</span>
+      <img src="{{ profile.portrait | relative_url }}" alt="{{ profile.portrait_alt | escape }}" width="1280" height="1280" fetchpriority="high">
+    </div>
+    <figcaption class="mono">PERCEPTION <span aria-hidden="true">→</span> ACTION</figcaption>
+  </figure>
+</section>

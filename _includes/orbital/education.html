@@ -1,0 +1,22 @@
+<section class="content-section education-section" id="education" aria-labelledby="education-title">
+  <div class="section-label">
+    <span class="section-index mono">02 / EDUCATION</span>
+    <h2 id="education-title">Education</h2>
+  </div>
+  <div class="section-content education-list">
+    {% assign education_entries = site.data.education | sort: 'start' | reverse %}
+    {% for education in education_entries %}
+      <article class="education-entry">
+        <div class="institution-logo">
+          {% if education.logo and education.logo != '' %}<img src="{{ education.logo | relative_url }}" alt="{{ education.institution | escape }} logo" width="88" height="88" loading="lazy" decoding="async">{% else %}<span aria-hidden="true">{{ education.institution | slice: 0, 1 }}</span>{% endif %}
+        </div>
+        <div class="education-copy">
+          <p class="entry-date mono"><time datetime="{{ education.start }}">{{ education.start | append: '-01' | date: '%b %Y' }}</time> — {% if education.end %}<time datetime="{{ education.end }}">{{ education.end | append: '-01' | date: '%b %Y' }}</time>{% else %}Present{% endif %}</p>
+          <h3>{% if education.url and education.url != '' %}<a href="{{ education.url | escape }}" target="_blank" rel="noopener noreferrer">{{ education.institution | escape }} <span class="outbound" aria-hidden="true">↗</span></a>{% else %}{{ education.institution | escape }}{% endif %}</h3>
+          <p class="degree">{{ education.degree | escape }}</p>
+          {% if education.description and education.description != '' %}<div class="education-description">{{ education.description | markdownify }}</div>{% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>

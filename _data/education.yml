@@ -1,0 +1,13 @@
+- institution: "University of California, Berkeley"
+  degree: "Exchange Student"
+  start: "2025-01"
+  end: "2025-05"
+  logo: "/images/ucb.png"
+  url: ""
+
+- institution: "Nankai University"
+  degree: "B.Eng. in Computer Science"
+  start: "2022-09"
+  end: "2026-06"
+  logo: "/images/nku.png"
+  url: ""

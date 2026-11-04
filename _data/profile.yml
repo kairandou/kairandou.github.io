@@ -1,0 +1,34 @@
+name: "Kairan Dou"
+name_zh: "窦楷然"
+tagline: "Building embodied agents that learn, reason, and act in the real world."
+portrait: "/images/profile.png"
+portrait_alt: "Portrait of Kairan Dou"
+research_interests:
+  - "Vision-language-action models"
+  - "Reinforcement learning"
+  - "Post-training"
+  - "Retrieval and reasoning"
+bio:
+  - >-
+    Hi, I'm Kairan Dou. You can also call me Kevin. I work on embodied intelligence,
+    with a focus on reinforcement learning and post-training for vision-language-action
+    models. I am interested in building agents that can reason, generalize, and make
+    decisions over long horizons.
+  - >-
+    My research experience includes robotic manipulation at [MIT Media Lab](https://www.media.mit.edu/)
+    and [Harvard Ophthalmology AI Lab](https://ophai.hms.harvard.edu/), advised by
+    [Paul Liang](https://pliang279.github.io/) and [Mengyu Wang](https://ophai.hms.harvard.edu/team/dr-wang/);
+    multimodal learning at The University of Texas at Austin with
+    [Philipp Krähenbühl](https://www.philkr.net/); and research at Nankai University's
+    Visual Computing and Intelligent Perception Lab with [Xiang Li](https://implus.github.io/).
+  - >-
+    I studied Computer Science at Nankai University and was an exchange student at
+    the University of California, Berkeley. My long-term goal is to advance real-world
+    intelligence through unified perception, control, and learning.
+links:
+  - label: "Email"
+    url: "mailto:dkr1@berkeley.edu"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/citations?hl=en&user=tWcg0ZsAAAAJ"
+  - label: "GitHub"
+    url: "https://github.com/Darkeyessss"
