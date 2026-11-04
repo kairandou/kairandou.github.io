@@ -1,4 +1,5 @@
 <section class="hero page-width" aria-labelledby="hero-name">
+  <div class="hero-ambience" aria-hidden="true"><span class="hero-scan"></span></div>
   <div class="hero-copy">
     <p class="eyebrow">EMBODIED INTELLIGENCE / RESEARCH</p>
     <h1 id="hero-name">{{ profile.name | escape }}</h1>
@@ -19,7 +20,7 @@
     <div class="portrait-orbit">
       <span class="orbit-satellite" aria-hidden="true"></span>
       <span class="orbit-cross" aria-hidden="true">+</span>
-      <img src="{{ profile.portrait | relative_url }}" alt="{{ profile.portrait_alt | escape }}" width="1280" height="1280" fetchpriority="high">
+      <img src="{{ profile.portrait | relative_url }}" alt="{{ profile.portrait_alt | escape }}" width="{{ profile.portrait_width | default: 1280 }}" height="{{ profile.portrait_height | default: 1280 }}" fetchpriority="high">
     </div>
     <figcaption class="mono">PERCEPTION <span aria-hidden="true">→</span> ACTION</figcaption>
   </figure>

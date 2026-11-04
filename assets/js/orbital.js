@@ -36,7 +36,7 @@
 
     function enter(element, delay = 0, duration = 560) {
       const destination = document.getElementById(window.location.hash.slice(1));
-      if (!motionEnabled || typeof element.animate !== 'function' || element.matches(':focus-within')) return;
+      if (!motionEnabled || document.hidden || typeof element.animate !== 'function' || element.matches(':focus-within')) return;
       if (destination && (destination === element || destination.contains(element))) return;
       const animation = element.animate([
         {opacity: 0, transform: 'translateY(16px)'},
