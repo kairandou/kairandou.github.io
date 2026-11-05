@@ -1,3 +1,17 @@
+- id: "ript-vla"
+  title: "Interactive Post-Training for Vision-Language-Action Models"
+  authors: "Shuhan Tan, **Kairan Dou**, Yue Zhao, Philipp Krähenbühl"
+  venue: "FMEA Workshop @ CVPR"
+  year: 2025
+  scholar_id: "tWcg0ZsAAAAJ:u-x6o8ySG0sC"
+  citations: 159
+  citations_updated: "2026-11-05"
+  image: "/images/ript.png"
+  image_alt: "Overview of RIPT-VLA interactive post-training"
+  links:
+    - label: "Paper"
+      url: "https://arxiv.org/abs/2505.17016"
+
 - id: "failure-aware-progress"
   title: "Failure-Aware Progress Estimation for Robot Learning"
   authors: "Yingxi Lu, **Kairan Dou**, Bu He, Mengdi Xu"
@@ -26,20 +40,6 @@
   links:
     - label: "Paper"
       url: "https://arxiv.org/abs/2509.00877"
-
-- id: "ript-vla"
-  title: "Interactive Post-Training for Vision-Language-Action Models"
-  authors: "Shuhan Tan, **Kairan Dou**, Yue Zhao, Philipp Krähenbühl"
-  venue: "FMEA Workshop @ CVPR"
-  year: 2025
-  scholar_id: "tWcg0ZsAAAAJ:u-x6o8ySG0sC"
-  citations: 159
-  citations_updated: "2026-11-05"
-  image: "/images/ript.png"
-  image_alt: "Overview of RIPT-VLA interactive post-training"
-  links:
-    - label: "Paper"
-      url: "https://arxiv.org/abs/2505.17016"
 
 - id: "from-words-to-worth"
   title: "From Words to Worth: Newborn Article Impact Prediction with LLM"
