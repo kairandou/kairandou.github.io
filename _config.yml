@@ -8,9 +8,9 @@
 # Site Settings
 title                    : "Kairan Dou(窦楷然)"
 description              : "Kairan Dou's research in embodied intelligence, VLA post-training, and reinforcement learning."
-url                      : "https://darkeyessss.github.io"
+url                      : "https://kairandou.github.io"
 baseurl                  : ""
-repository               : "Darkeyessss/Darkeyessss.github.io"
+repository               : "kairandou/kairandou.github.io"
 google_scholar_stats_use_cdn : true
 
 # google analytics
@@ -39,7 +39,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "Darkeyessss" # e.g., "github username"
+  github           : "kairandou" # e.g., "github username"
   instagram        : # "darkeyes7729"
   google_plus      :
   keybase          :
