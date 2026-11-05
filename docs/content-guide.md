@@ -13,7 +13,7 @@
 
 ## 修改 About
 
-`bio` 中每个 `- >-` 是一个自然段，支持 Markdown 链接和 `**加粗**`。`research_interests` 是研究方向列表；联系方式在 `links` 中填写。头像放入 `images/`，然后修改 `portrait`，并填写照片实际像素宽高 `portrait_width` 和 `portrait_height`。原图和 AI 清晰化版本均已保留，切换方法见[视觉素材说明](visual-assets.md)。
+`bio` 中每个 `- >-` 是一个自然段，支持 Markdown 链接和 `**加粗**`。`research_interests` 是研究方向列表；联系方式在 `links` 中填写。头像放入 `images/`，然后修改 `portrait`，并填写照片实际像素宽高 `portrait_width` 和 `portrait_height`。当前头像为 `/images/profile-left-clean-v2.png`（1254 × 1254），使用内置 imagegen 清除左侧门、门框及设施，并延续原米黄色墙面。原图和历史清晰化版本 v1 均已保留，切换与回退方法见[视觉素材说明](visual-assets.md)。
 
 现有简介、教育、实习和邮箱根据 2026 年 11 月提供的简历更新；邮箱为 CMU 邮箱。CMU 项目于 2027 年 1 月开始，因此当前写为即将入学，不写为已在读。入学后请同步更新简介和教育条目的 `status`。旧 `_data/experience.yml` 仅留作历史数据，当前模板不读取它。
 
