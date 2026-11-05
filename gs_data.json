@@ -1,0 +1,106 @@
+{
+  "container_type": "Author",
+  "filled": [
+    "basics",
+    "publications",
+    "indices",
+    "counts"
+  ],
+  "scholar_id": "tWcg0ZsAAAAJ",
+  "source": "AUTHOR_PROFILE_PAGE",
+  "name": "Kairan Dou",
+  "url_picture": "https://scholar.googleusercontent.com/citations?view_op=view_photo&user=tWcg0ZsAAAAJ&citpid=6",
+  "affiliation": "Carnegie Mellon University, Nankai University",
+  "organization": 17554517495610703090,
+  "interests": [
+    "Robotics",
+    "Large Language Model"
+  ],
+  "email_domain": "@cmu.edu",
+  "citedby": 201,
+  "publications": {
+    "tWcg0ZsAAAAJ:u-x6o8ySG0sC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Interactive post-training for vision-language-action models",
+        "pub_year": "2025",
+        "citation": "arXiv preprint arXiv:2505.17016, 2025"
+      },
+      "filled": false,
+      "author_pub_id": "tWcg0ZsAAAAJ:u-x6o8ySG0sC",
+      "num_citations": 159,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=6590833383713825866,16718594066122674605",
+      "cites_id": [
+        "6590833383713825866",
+        "16718594066122674605"
+      ]
+    },
+    "tWcg0ZsAAAAJ:u5HHmVD_uO8C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "From words to worth: Newborn article impact prediction with llm",
+        "pub_year": "2025",
+        "citation": "Proceedings of the AAAI Conference on Artificial Intelligence 39 (1), 1183-1191, 2025"
+      },
+      "filled": false,
+      "author_pub_id": "tWcg0ZsAAAAJ:u5HHmVD_uO8C",
+      "num_citations": 32,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=12986018083012847356",
+      "cites_id": [
+        "12986018083012847356"
+      ]
+    },
+    "tWcg0ZsAAAAJ:d1gkVwhDpl0C": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "Evinote-rag: Enhancing rag models via answer-supportive evidence notes",
+        "pub_year": "2025",
+        "citation": "arXiv preprint arXiv:2509.00877, 2025"
+      },
+      "filled": false,
+      "author_pub_id": "tWcg0ZsAAAAJ:d1gkVwhDpl0C",
+      "num_citations": 10,
+      "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=8750732883369518551",
+      "cites_id": [
+        "8750732883369518551"
+      ]
+    },
+    "tWcg0ZsAAAAJ:qjMakFHDy7sC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "EviNoteRAG: Enhancing RAG Models via Quality-Augmented Evidence Notes",
+        "pub_year": "2026",
+        "citation": "Proceedings of the 2026 Conference on Empirical Methods in Natural Language …, 2026"
+      },
+      "filled": false,
+      "author_pub_id": "tWcg0ZsAAAAJ:qjMakFHDy7sC",
+      "num_citations": 0
+    },
+    "tWcg0ZsAAAAJ:2osOgNQ5qMEC": {
+      "container_type": "Publication",
+      "source": "AUTHOR_PUBLICATION_ENTRY",
+      "bib": {
+        "title": "LatentGeo: Learnable Auxiliary Constructions in Latent Space for Multimodal Geometric Reasoning",
+        "pub_year": "2026",
+        "citation": "arXiv preprint arXiv:2603.12166, 2026"
+      },
+      "filled": false,
+      "author_pub_id": "tWcg0ZsAAAAJ:2osOgNQ5qMEC",
+      "num_citations": 0
+    }
+  },
+  "citedby5y": 201,
+  "hindex": 3,
+  "hindex5y": 3,
+  "i10index": 3,
+  "i10index5y": 3,
+  "cites_per_year": {
+    "2025": 35,
+    "2026": 166
+  },
+  "updated": "2026-11-05T07:00:54Z"
+}
