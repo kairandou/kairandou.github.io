@@ -1,11 +1,11 @@
 ## Kairan Dou · Personal Website
 
-The current homepage uses the **Orbital Scholar** design: About, Education, and Papers. Content lives in `_data/`, separate from the layout and styling.
+The current homepage uses the **Orbital Scholar** design: About, Education, Internships, and Papers. Content lives in `_data/`, separate from the layout and styling.
 
 - [中文内容填写指南](docs/content-guide.md)
 - [主页后续完善 TODO](docs/TODO.md)
 - [简介与联系方式](_data/profile.yml) · [教育经历](_data/education.yml) · [论文](_data/publications.yml)
-- [可选科研 / 工作经历](_data/experience.yml), hidden by default
+- [实习经历](_data/internships.yml) · [学校和公司标志来源](docs/institution-assets.md)
 - [改版前的完整主页内容](docs/archive/homepage-before-2026-11-04.md)
 
 The original version is preserved on the remote branch `backup/original-2026-11-04` at commit `160d5fcd869f3906ef644b159b14265b24f214cb`.

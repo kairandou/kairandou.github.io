@@ -1,0 +1,23 @@
+{% if site.data.internships.size > 0 %}
+<section class="content-section internships-section" id="internships" aria-labelledby="internships-title">
+  <div class="section-label">
+    <span class="section-index mono">03 / INDUSTRY</span>
+    <h2 id="internships-title">Internships</h2>
+  </div>
+  <div class="section-content internship-list">
+    {% assign internships = site.data.internships | sort: 'start' | reverse %}
+    {% for internship in internships %}
+      <article class="internship-entry">
+        <div class="institution-logo company-logo">
+          {% if internship.logo and internship.logo != '' %}<img src="{{ internship.logo | relative_url }}" alt="{{ internship.organization | escape }} logo" width="88" height="88" loading="lazy" decoding="async">{% else %}<span aria-hidden="true">{{ internship.organization | slice: 0, 1 }}</span>{% endif %}
+        </div>
+        <div class="internship-copy">
+          <p class="entry-date mono"><time datetime="{{ internship.start }}">{{ internship.start | append: '-01' | date: '%b %Y' }}</time> — {% if internship.end and internship.end != '' %}<time datetime="{{ internship.end }}">{{ internship.end | append: '-01' | date: '%b %Y' }}</time>{% else %}Present{% endif %}</p>
+          <h3>{% if internship.url and internship.url != '' %}<a href="{{ internship.url | escape }}" target="_blank" rel="noopener noreferrer">{{ internship.organization | escape }} <span class="outbound" aria-hidden="true">↗</span></a>{% else %}{{ internship.organization | escape }}{% endif %}</h3>
+          <p class="role">{{ internship.role | escape }}</p>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

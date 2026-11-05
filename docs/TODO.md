@@ -1,8 +1,8 @@
 # 学术主页后续完善清单
 
-> 更新：2026-11-04 · 当前导航：About / Education / Papers · 维护方式见[内容填写指南](content-guide.md)
+> 更新：2026-11-05 · 当前导航：About / Education / Internships / Papers · 维护方式见[内容填写指南](content-guide.md)
 
-让导师、合作者或招聘方快速看到“研究方向 → 代表成果 → 经历与贡献 → 联系方式”。优先补齐可信内容，再增加栏目；以下清单不会自动修改页面，顶层导航继续保持三个入口。
+让导师、合作者或招聘方快速看到研究方向、教育、实习、代表成果和联系方式。以下清单不会自动修改页面；教育与实习保持简洁，不添加研究经历板块。
 
 ## 已保存的基础版本
 
@@ -11,9 +11,10 @@
 
 ## P0 · 对外分享前补齐与核对
 
-- [ ] **当前身份与机构**：核对并更新 [profile.yml](../_data/profile.yml) 的简介，用一句话说明现在做什么；不把旧的研究经历回顾当作当前任职。
-- [ ] **可用邮箱**：确认现有 Berkeley 邮箱是否仍适合作为长期联系地址；在 [profile.yml](../_data/profile.yml) 统一修改 Email 链接。
-- [ ] **经历日期**：核对 [experience.yml](../_data/experience.yml) 中 MIT/Harvard、UT Austin 的结束日期；目前 `null` 仅沿用旧站信息。核对 [education.yml](../_data/education.yml) 的学位名称与实际起止日期。
+- [x] **当前身份与机构**：根据新简历更新 ByteDance Seed 当前岗位与美团实习，移除简介中的研究经历。
+- [x] **联系邮箱**：已在 [profile.yml](../_data/profile.yml) 更新为新简历中的 CMU 邮箱。
+- [x] **教育与实习日期**：已按简历更新 [education.yml](../_data/education.yml) 与 [internships.yml](../_data/internships.yml)；CMU 标注 Incoming 和预计毕业时间。
+- [ ] **入学后更新**：2027 年 1 月实际入学后，修改简介的未来时表达，并移除 CMU 的 Incoming 标记。
 - [ ] **CV**：准备最新 PDF，放入 `files/` 后在 [profile.yml](../_data/profile.yml) 的 `links` 中添加 CV；注明更新日期，保持与主页一致。
 - [ ] **论文信息**：逐项核对 [publications.yml](../_data/publications.yml) 的标题、作者顺序、等贡献标记、venue、年份和发表状态，区分 preprint、workshop 与正式会议／期刊。
 - [ ] **论文入口**：为有公开资源的论文补齐 Paper、Code、Project、DOI；没有的资源不留空按钮。检查已有链接是否指向正确版本。
@@ -23,7 +24,7 @@
 
 - [ ] **精选机器人／项目展示**：挑选 1–2 项最能说明能力的公开成果，写清任务、方法和本人贡献，配短视频及代码／项目页。视频注明 Sim/Real、是否加速；放在对应论文下或 About 内，材料充足后再决定是否独立成页。
 - [ ] **简短近况**：整理最近 3–5 条值得公开的录用、报告或项目发布消息，附年月和可验证链接；作为 About 中的紧凑列表即可，旧消息归档。
-- [ ] **详细科研／工作经历（可选）**：核对信息后启用 [experience.yml](../_data/experience.yml)，每段保留 1–2 句研究问题和个人贡献；显示在 About 的 Research experience 内，不新增导航。
+- [ ] **实习维护**：岗位或任职状态变化时更新 [internships.yml](../_data/internships.yml)，继续只展示公司、岗位与日期。
 - [ ] **合作与联系**：在 [profile.yml](../_data/profile.yml) 简介末尾说明希望交流的具体方向及首选联系方式；仅在确有需求时写开放合作／求职意向。
 
 ## P2 · 有材料再添加

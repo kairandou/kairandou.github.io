@@ -1,21 +1,21 @@
 # 主页内容维护
 
-> 适用：Kairan Dou 个人主页 · 更新：2026-11-04
+> 适用：Kairan Dou 个人主页 · 更新：2026-11-05
 
-页面导航固定为 **About、Education、Papers** 三个部分。日常更新只改 `_data/` 中的内容文件，不需要编辑 HTML 或 CSS。教育经历和可选的科研／工作经历自动按开始日期倒序排列；论文按文件中的顺序展示，新增论文通常放在最前面。
+页面分为 **About、Education、Internships、Papers**。日常更新只改 `_data/` 中的内容文件，不需要编辑 HTML 或 CSS。教育与实习按开始日期倒序排列；论文按文件中的顺序展示，新增论文通常放在最前面。教育只展示学校、学习阶段和时间；实习只展示公司、岗位和时间，不展示项目职责或研究经历。
 
 | 要修改的内容 | 文件 |
 | --- | --- |
 | 姓名、照片、简介、研究方向、联系方式 | `_data/profile.yml` |
 | 教育经历 | `_data/education.yml` |
 | 论文、作者、配图、链接 | `_data/publications.yml` |
-| 科研与工作经历，默认不显示 | `_data/experience.yml` |
+| 公司、实习岗位、时间和标志 | `_data/internships.yml` |
 
 ## 修改 About
 
 `bio` 中每个 `- >-` 是一个自然段，支持 Markdown 链接和 `**加粗**`。`research_interests` 是研究方向列表；联系方式在 `links` 中填写。头像放入 `images/`，然后修改 `portrait`，并填写照片实际像素宽高 `portrait_width` 和 `portrait_height`。原图和 AI 清晰化版本均已保留，切换方法见[视觉素材说明](visual-assets.md)。
 
-现有简介根据旧站内容改写，未添加新的雇主或学位。邮箱仍沿用旧站的 Berkeley 邮箱；发布更新时请按实际情况修改。About 使用研究经历回顾的表达，不把旧站的 “present” 自动视为当前任职。
+现有简介、教育、实习和邮箱根据 2026 年 11 月提供的简历更新；邮箱为 CMU 邮箱。CMU 项目于 2027 年 1 月开始，因此当前写为即将入学，不写为已在读。入学后请同步更新简介和教育条目的 `status`。旧 `_data/experience.yml` 仅留作历史数据，当前模板不读取它。
 
 ## 添加教育经历
 
@@ -23,14 +23,16 @@
 
 ```yaml
 - institution: "学校名称"
-  degree: "学位 / 项目名称"
+  degree: "Graduate student"
+  status: "Incoming"
   start: "2026-09"
   end: "2028-06"
+  end_label: "Expected"
   logo: "/images/school.png"
   url: "https://example.edu"
 ```
 
-日期使用带引号的 `YYYY-MM`。正在进行的经历可写 `end: null`；没有 logo 或学校链接时可留空、填写空字符串 `""` 或省略字段。教育经历自动按 `start` 倒序排列，无需手动调整先后。
+`degree` 只写 `Undergraduate`、`Exchange student` 或 `Graduate student`，不写专业。日期使用带引号的 `YYYY-MM`。尚未入学时填写 `status: "Incoming"`；入学后将它留空或删去。预计毕业日期可加 `end_label: "Expected"`；已完成的经历不用这两个字段。结束日期未知时可写 `end: null`；没有 logo 或学校链接时可留空、填写空字符串 `""` 或省略字段。教育经历自动按 `start` 倒序排列，无需手动调整先后。
 
 ## 添加论文
 
@@ -56,24 +58,20 @@
 
 配图放在 `images/`，使用 `/images/paper.png` 这样的根相对路径。图片按原始比例完整显示，点击可放大；无需预先裁成固定尺寸。没有配图时将 `image` 和 `image_alt` 留空即可。
 
-## 添加科研或工作经历
+## 添加实习
 
-经历数据单独保存在 `_data/experience.yml`，`enabled: false` 时不显示。需要展示时，先核对所有条目的日期，再改为 `enabled: true`，经历会作为 **Research experience** 子部分出现在 About 内，并自动按 `start` 倒序排列。不会新增顶层部分或导航，页面仍然是 About、Education、Papers。在 `items:` 下复制条目，保持缩进：
+在 `_data/internships.yml` 复制一项并填写即可，不需要修改网页模板：
 
 ```yaml
-enabled: false
-items:
-  - organization: "机构名称"
-    role: "职位 / 身份"
-    start: "2026-07"
-    end: null
-    summary: "工作内容或研究方向，支持 Markdown。"
-    links:
-      - label: "Project"
-        url: "https://example.com"
+- organization: "公司名称"
+  role: "实习岗位名称"
+  start: "2026-07"
+  end: null
+  logo: "/images/companies/company.png"
+  url: "https://example.com"
 ```
 
-`end: null` 表示页面显示 Present。迁移来的 MIT/Harvard、UT Austin 条目在旧站中没有结束日期，当前保留为 `null`，**这不代表已确认仍在任**；启用前请补充或确认。简介可留空或省略，链接不需要时可写 `links: []` 或省略字段。
+`end: null` 表示 Present；已结束的实习填写结束年月。不需要写 `summary`、项目职责或导师。标志完整显示，不裁切；横版公司字标使用横版容器。没有标志或公司网址可留空。所有实习删除并将文件内容设为 `[]` 时，实习板块与导航自动隐藏。学校与公司标志来源见[素材来源](institution-assets.md)。
 
 ## 保存与发布
 

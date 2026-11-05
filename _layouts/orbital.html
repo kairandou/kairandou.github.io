@@ -31,6 +31,7 @@
         <nav class="site-nav" aria-label="Main navigation">
           <a href="#about">About</a>
           <a href="#education">Education</a>
+          {% if site.data.internships.size > 0 %}<a href="#internships">Internships</a>{% endif %}
           <a href="#papers">Papers</a>
         </nav>
       </header>
@@ -39,6 +40,7 @@
     <main id="main" class="page-width">
       {% include orbital/about.html %}
       {% include orbital/education.html %}
+      {% include orbital/internships.html %}
       {% include orbital/papers.html %}
       {{ content }}
     </main>

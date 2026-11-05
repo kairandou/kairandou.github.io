@@ -1,6 +1,6 @@
 <section class="papers-section" id="papers" aria-labelledby="papers-title">
   <header class="papers-heading">
-    <div><span class="section-index mono">03 / SELECTED RESEARCH</span><h2 id="papers-title">Papers</h2></div>
+    <div><span class="section-index mono">{% if site.data.internships.size > 0 %}04{% else %}03{% endif %} / SELECTED RESEARCH</span><h2 id="papers-title">Papers</h2></div>
     {% for link in profile.links %}{% if link.url contains 'scholar.google.com' %}<a class="all-publications" href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}
   </header>
   <div class="paper-list">

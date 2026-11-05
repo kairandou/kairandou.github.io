@@ -96,7 +96,7 @@
           reveals.unobserve(entry.target);
         });
       }, {threshold: 0, rootMargin: '0px 0px -24px 0px'});
-      document.querySelectorAll('.section-label, .biography, .education-entry, .papers-heading, .paper-entry').forEach(element => reveals.observe(element));
+      document.querySelectorAll('.section-label, .biography, .education-entry, .internship-entry, .papers-heading, .paper-entry').forEach(element => reveals.observe(element));
 
       const hero = document.querySelector('.hero');
       const heroVisibility = new IntersectionObserver(entries => {

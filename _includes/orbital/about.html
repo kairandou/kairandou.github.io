@@ -5,20 +5,5 @@
   </div>
   <div class="section-content biography">
     {% for paragraph in profile.bio %}{{ paragraph | markdownify }}{% endfor %}
-    {% if site.data.experience.enabled and site.data.experience.items.size > 0 %}
-      <div class="experience-list">
-        <h3>Research experience</h3>
-        {% assign experiences = site.data.experience.items | sort: 'start' | reverse %}
-        {% for experience in experiences %}
-          <article class="experience-entry">
-            <p class="entry-date mono"><time datetime="{{ experience.start }}">{{ experience.start | append: '-01' | date: '%b %Y' }}</time> — {% if experience.end %}<time datetime="{{ experience.end }}">{{ experience.end | append: '-01' | date: '%b %Y' }}</time>{% else %}Present{% endif %}</p>
-            <h4>{{ experience.organization | escape }}</h4>
-            <p>{{ experience.role | escape }}</p>
-            {% if experience.summary and experience.summary != '' %}{{ experience.summary | markdownify }}{% endif %}
-            {% if experience.links.size > 0 %}<div class="entry-links">{% for link in experience.links %}<a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label | escape }} ↗</a>{% endfor %}</div>{% endif %}
-          </article>
-        {% endfor %}
-      </div>
-    {% endif %}
   </div>
 </section>
