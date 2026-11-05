@@ -5,10 +5,19 @@ import json
 import os
 from pathlib import Path
 import signal
+import sys
 from types import FrameType
 from typing import Iterator
 
 DEFAULT_SCHOLAR_ID = "tWcg0ZsAAAAJ"
+
+
+class ScholarUnavailable(Exception):
+    """Scholar could not return a response; the underlying cause may be unknown."""
+
+
+class FetchDeadlineExceeded(SystemExit):
+    """Stop scholarly retries when the overall retrieval deadline expires."""
 
 
 def normalize_author(author: dict, scholar_id: str) -> dict:
@@ -52,12 +61,19 @@ def normalize_author(author: dict, scholar_id: str) -> dict:
 
 
 def fetch_author(scholar_id: str) -> dict:
+    from httpx import NetworkError, TimeoutException
     from scholarly import scholarly
+    from scholarly._proxy_generator import MaxTriesExceededException
 
     scholarly.set_timeout(30)
     scholarly.set_retries(2)
-    author = scholarly.search_author_id(scholar_id)
-    scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
+    try:
+        author = scholarly.search_author_id(scholar_id)
+        scholarly.fill(author, sections=["basics", "indices", "counts", "publications"])
+    except (MaxTriesExceededException, NetworkError, TimeoutException) as error:
+        raise ScholarUnavailable(
+            f"Scholar retrieval ended with {type(error).__name__}"
+        ) from error
     return normalize_author(author, scholar_id)
 
 
@@ -85,9 +101,7 @@ def write_snapshot(snapshot: dict, output_dir: Path) -> None:
 def fetch_deadline(seconds: int) -> Iterator[None]:
     def expired(signum: int, frame: FrameType | None) -> None:
         # SystemExit cannot be swallowed by scholarly's broad retry handlers.
-        raise SystemExit(
-            "Google Scholar fetch exceeded its deadline; retaining prior data"
-        )
+        raise FetchDeadlineExceeded("Google Scholar retrieval exceeded its deadline")
 
     previous_handler = signal.signal(signal.SIGALRM, expired)
     signal.alarm(seconds)
@@ -105,7 +119,7 @@ def update_snapshot(scholar_id: str, output_dir: Path, timeout_seconds: int) -> 
     return snapshot
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description="Refresh Google Scholar citation data without overwriting failed fetches."
     )
@@ -117,14 +131,25 @@ def main() -> None:
         "--output-dir", type=Path, default=Path(__file__).resolve().parent / "results"
     )
     parser.add_argument("--timeout-seconds", type=int, default=240)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
     if args.timeout_seconds <= 0:
         parser.error("--timeout-seconds must be positive")
-    snapshot = update_snapshot(args.scholar_id, args.output_dir, args.timeout_seconds)
+    try:
+        snapshot = update_snapshot(
+            args.scholar_id, args.output_dir, args.timeout_seconds
+        )
+    except (ScholarUnavailable, FetchDeadlineExceeded) as error:
+        print(
+            "Retrieval unavailable / refresh skipped; existing published data left "
+            f"unchanged. {error}",
+            file=sys.stderr,
+        )
+        return 75
     print(
         f"Updated {len(snapshot['publications'])} publications at {snapshot['updated']}."
     )
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

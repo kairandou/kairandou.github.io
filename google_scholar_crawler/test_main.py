@@ -1,4 +1,7 @@
 import copy
+from contextlib import redirect_stderr, redirect_stdout
+import io
+import json
 from pathlib import Path
 import signal
 import tempfile
@@ -26,7 +29,9 @@ def author_response() -> dict:
 class SnapshotTests(unittest.TestCase):
     def test_deadline_bypasses_library_retry_handlers_and_restores_signal(self) -> None:
         original_handler = signal.getsignal(signal.SIGALRM)
-        with self.assertRaisesRegex(SystemExit, "exceeded its deadline"):
+        with self.assertRaisesRegex(
+            main.FetchDeadlineExceeded, "exceeded its deadline"
+        ):
             with main.fetch_deadline(10):
                 try:
                     signal.raise_signal(signal.SIGALRM)
@@ -112,8 +117,6 @@ class SnapshotTests(unittest.TestCase):
             output = Path(temporary)
             snapshot = main.normalize_author(author_response(), main.DEFAULT_SCHOLAR_ID)
             main.write_snapshot(snapshot, output)
-            import json
-
             self.assertEqual(
                 json.loads((output / "gs_data.json").read_text())["citedby"], 201
             )
@@ -122,6 +125,123 @@ class SnapshotTests(unittest.TestCase):
                 "201",
             )
             self.assertEqual(len(list(output.iterdir())), 2)
+
+    def test_cli_skips_unavailable_retrieval_without_changing_files(self) -> None:
+        from httpx import ConnectError, ReadTimeout
+        from scholarly import scholarly
+        from scholarly._proxy_generator import MaxTriesExceededException
+
+        failures = [
+            (main, "fetch_author", main.FetchDeadlineExceeded("deadline exceeded")),
+            (
+                scholarly,
+                "search_author_id",
+                MaxTriesExceededException("Cannot Fetch from Google Scholar."),
+            ),
+            (scholarly, "search_author_id", ConnectError("connection interrupted")),
+            (scholarly, "search_author_id", ReadTimeout("request timed out")),
+        ]
+        for target, method, error in failures:
+            with self.subTest(error=type(error).__name__):
+                with tempfile.TemporaryDirectory() as temporary:
+                    output = Path(temporary)
+                    old_snapshot = main.normalize_author(
+                        author_response(), main.DEFAULT_SCHOLAR_ID
+                    )
+                    old_snapshot["updated"] = "2026-11-01T00:00:00Z"
+                    main.write_snapshot(old_snapshot, output)
+                    previous = {
+                        path: (path.read_bytes(), path.stat().st_mtime_ns)
+                        for path in output.iterdir()
+                    }
+                    stdout, stderr = io.StringIO(), io.StringIO()
+                    with (
+                        patch.object(target, method, side_effect=error),
+                        redirect_stdout(stdout),
+                        redirect_stderr(stderr),
+                    ):
+                        result = main.main(["--output-dir", str(output)])
+                    self.assertEqual(result, 75)
+                    self.assertIn("refresh skipped", stderr.getvalue())
+                    self.assertNotIn("Updated", stdout.getvalue() + stderr.getvalue())
+                    self.assertEqual(set(output.iterdir()), set(previous))
+                    for path, (content, modified) in previous.items():
+                        self.assertEqual(path.read_bytes(), content)
+                        self.assertEqual(path.stat().st_mtime_ns, modified)
+
+    def test_cli_skipped_retrieval_does_not_create_an_empty_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "absent"
+            with (
+                patch.object(
+                    main,
+                    "fetch_author",
+                    side_effect=main.ScholarUnavailable("unavailable"),
+                ),
+                redirect_stderr(io.StringIO()),
+            ):
+                self.assertEqual(main.main(["--output-dir", str(output)]), 75)
+            self.assertFalse(output.exists())
+
+    def test_cli_does_not_swallow_programming_errors_or_regular_exit(self) -> None:
+        for error in (
+            TypeError("bug"),
+            ValueError("invalid"),
+            OSError("I/O"),
+            SystemExit(12),
+        ):
+            with self.subTest(error=type(error).__name__):
+                with patch.object(main, "fetch_author", side_effect=error):
+                    with self.assertRaises(type(error)):
+                        main.main([])
+
+    def test_cli_validation_failure_is_not_an_unavailable_result(self) -> None:
+        from scholarly import scholarly
+
+        author = author_response()
+        author["publications"] = []
+        with (
+            patch.object(scholarly, "search_author_id", return_value=author),
+            patch.object(scholarly, "fill"),
+            patch.object(main, "write_snapshot") as writer,
+        ):
+            with self.assertRaisesRegex(ValueError, "no publication list"):
+                main.main([])
+            writer.assert_not_called()
+
+    def test_cli_write_and_serialization_errors_remain_failures(self) -> None:
+        snapshot = main.normalize_author(author_response(), main.DEFAULT_SCHOLAR_ID)
+        with (
+            patch.object(main, "fetch_author", return_value=snapshot),
+            patch.object(
+                main, "write_snapshot", side_effect=PermissionError("read-only")
+            ),
+        ):
+            with self.assertRaises(PermissionError):
+                main.main([])
+        snapshot["unexpected"] = object()
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / "absent"
+            with patch.object(main, "fetch_author", return_value=snapshot):
+                with self.assertRaises(TypeError):
+                    main.main(["--output-dir", str(output)])
+            self.assertFalse(output.exists())
+
+    def test_cli_success_returns_zero_after_writing_snapshot(self) -> None:
+        snapshot = main.normalize_author(author_response(), main.DEFAULT_SCHOLAR_ID)
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            stdout = io.StringIO()
+            with (
+                patch.object(main, "fetch_author", return_value=snapshot),
+                redirect_stdout(stdout),
+            ):
+                result = main.main(["--output-dir", str(output)])
+            self.assertEqual(result, 0)
+            self.assertIn("Updated 1 publications", stdout.getvalue())
+            self.assertEqual(
+                json.loads((output / "gs_data.json").read_text()), snapshot
+            )
 
 
 if __name__ == "__main__":

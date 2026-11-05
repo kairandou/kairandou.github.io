@@ -2,7 +2,6 @@ name: Get Citation Data
 
 on:
   workflow_dispatch:
-  page_build:
   push:
     branches: [main]
     paths:
@@ -35,10 +34,33 @@ jobs:
       - name: Verify snapshot validation
         run: python -m unittest discover -s google_scholar_crawler -p 'test_*.py'
       - name: Fetch citations
+        id: fetch
         env:
           GOOGLE_SCHOLAR_ID: ${{ vars.GOOGLE_SCHOLAR_ID || secrets.GOOGLE_SCHOLAR_ID || 'tWcg0ZsAAAAJ' }}
-        run: python google_scholar_crawler/main.py --output-dir "$RUNNER_TEMP/scholar-results"
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=0
+          python google_scholar_crawler/main.py --output-dir "$RUNNER_TEMP/scholar-results" || status=$?
+          case "$status" in
+            0)
+              echo "updated=true" >> "$GITHUB_OUTPUT"
+              ;;
+            75)
+              echo "updated=false" >> "$GITHUB_OUTPUT"
+              echo "::warning::Citation refresh skipped: Google Scholar could not be retrieved. Published data was not changed."
+              cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          ### Citation refresh skipped
+
+          Google Scholar could not be retrieved within the bounded fetch attempt. No new citation snapshot was published. Existing counts and their last successful update date remain unchanged; the next scheduled or manual run can try again.
+
+          This run did not refresh the citation counts. See the fetch log for the retrieval error.
+          EOF
+              ;;
+            *) exit "$status" ;;
+          esac
       - name: Save citation snapshot
+        if: steps.fetch.outputs.updated == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -58,3 +80,8 @@ jobs:
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Update Google Scholar citation data"
           git push origin HEAD:google-scholar-stats
+          cat >> "$GITHUB_STEP_SUMMARY" <<'EOF'
+          ### Citation snapshot refreshed
+
+          Google Scholar data was retrieved, validated, and published to the `google-scholar-stats` branch. The snapshot includes the successful fetch date.
+          EOF
