@@ -114,8 +114,10 @@ a:focus-visible, button:focus-visible { outline: 3px solid #378570; outline-offs
 .paper-copy h3 { font-size: 23px; font-weight: 550; letter-spacing: -.45px; line-height: 1.38; text-wrap: pretty; }
 .paper-authors { color: #5c6b72; font-size: 12px; line-height: 1.85; margin-top: 12px; overflow-wrap: anywhere; }
 .paper-authors strong { color: var(--ink); font-weight: 650; }
-.paper-summary { color: var(--secondary); font-size: 14px; line-height: 1.8; margin-top: 14px; }
-.paper-summary p + p { margin-top: 8px; }
+.paper-citations { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-top: 12px; color: var(--link); font-size: 10px; letter-spacing: .2px; }
+.paper-citations > a, .paper-citations > span { padding: 3px 8px; border: 1px solid #c6d9ce; border-radius: 4px; }
+.paper-citations time { color: var(--muted); font-size: 9px; }
+.paper-citations time[hidden] { display: none; }
 .paper-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 19px; }
 .paper-links a { display: inline-flex; align-items: center; gap: 15px; color: var(--link); border: 1px solid #c6d9ce; border-radius: 4px; padding: 6px 12px; font: 11px/1.6 var(--mono); }
 .paper-links a:hover { background: #edf5ef; text-decoration: none; border-color: #94b4a5; }
@@ -270,7 +272,6 @@ html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='
   .paper-figure { padding-top: 0; }
   .figure-mat { aspect-ratio: 16 / 11; padding: 12px; }
   .paper-authors { font-size: 11px; line-height: 1.9; }
-  .paper-summary { font-size: 13px; }
   .site-footer { flex-wrap: wrap; gap: 14px 20px; padding-block: 25px 30px; }
   .site-footer .mono { order: 3; width: 100%; font-size: 8px; }
   .figure-dialog { width: calc(100vw - 20px); max-height: calc(100dvh - 20px); border-radius: 5px; }

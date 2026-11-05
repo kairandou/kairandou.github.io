@@ -1,3 +1,15 @@
+- id: "failure-aware-progress"
+  title: "Failure-Aware Progress Estimation for Robot Learning"
+  authors: "Yingxi Lu, **Kairan Dou**, Bu He, Mengdi Xu"
+  venue: "CSIR Workshop @ CoRL · Accepted"
+  year: 2026
+  image: "/images/robofape-overview.jpeg"
+  image_alt: "RoboFAPE framework for failure-aware progress estimation and downstream robot learning"
+  scholar_id: ""
+  citations: null
+  citations_updated: ""
+  links: []
+
 - id: "evinote-rag"
   title: "EviNote-RAG: Enhancing RAG Models via Answer-Supportive Evidence Notes"
   authors: >-
@@ -6,11 +18,11 @@
     Can Yi, Changhua Meng, Yuchen Zhou, Yongliang Shen, Shuai Lu
   venue: "arXiv"
   year: 2025
+  scholar_id: "tWcg0ZsAAAAJ:d1gkVwhDpl0C"
+  citations: 10
+  citations_updated: "2026-11-05"
   image: "/images/evi.png"
   image_alt: "Overview of EviNote-RAG"
-  summary: >-
-    An agentic retrieval–note–answer framework that uses supportive evidence notes
-    and an entailment-based reward to improve evidence selection and reasoning.
   links:
     - label: "Paper"
       url: "https://arxiv.org/abs/2509.00877"
@@ -20,14 +32,14 @@
   authors: "Shuhan Tan, **Kairan Dou**, Yue Zhao, Philipp Krähenbühl"
   venue: "FMEA Workshop @ CVPR"
   year: 2025
+  scholar_id: "tWcg0ZsAAAAJ:u-x6o8ySG0sC"
+  citations: 159
+  citations_updated: "2026-11-05"
   image: "/images/ript.png"
   image_alt: "Overview of RIPT-VLA interactive post-training"
-  summary: >-
-    Reinforcement learning for VLA post-training with sparse binary rewards,
-    dynamic rollout sampling, and leave-one-out advantage estimation.
   links:
     - label: "Paper"
-      url: "https://www.arxiv.org/pdf/2505.17016"
+      url: "https://arxiv.org/abs/2505.17016"
 
 - id: "from-words-to-worth"
   title: "From Words to Worth: Newborn Article Impact Prediction with LLM"
@@ -36,11 +48,11 @@
     Jian Yang, Ming-Ming Cheng, Xiang Li
   venue: "AAAI"
   year: 2025
+  scholar_id: "tWcg0ZsAAAAJ:u5HHmVD_uO8C"
+  citations: 32
+  citations_updated: "2026-11-05"
   image: "/images/1.png"
   image_alt: "Overview of newborn article impact prediction"
-  summary: >-
-    Predicting the impact of newly published articles with large language models,
-    introducing the Newborn AIP task, the TNCSIsp metric, and the TKPD and NAID datasets.
   links:
     - label: "Paper"
-      url: "https://arxiv.org/pdf/2408.03934"
+      url: "https://arxiv.org/abs/2408.03934"

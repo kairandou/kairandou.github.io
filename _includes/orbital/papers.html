@@ -1,4 +1,4 @@
-<section class="papers-section" id="papers" aria-labelledby="papers-title">
+<section class="papers-section" id="papers" aria-labelledby="papers-title" data-citation-feed="https://raw.githubusercontent.com/{{ site.repository | escape }}/google-scholar-stats/gs_data.json">
   <header class="papers-heading">
     <div><span class="section-index mono">{% if site.data.internships.size > 0 %}04{% else %}03{% endif %} / SELECTED RESEARCH</span><h2 id="papers-title">Papers</h2></div>
     {% for link in profile.links %}{% if link.url contains 'scholar.google.com' %}<a class="all-publications" href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">Google Scholar <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}
@@ -18,7 +18,10 @@
           <p class="paper-venue mono">{{ paper.venue | escape }} <span aria-hidden="true">·</span> {{ paper.year | escape }}</p>
           <h3 id="title-{{ paper.id | slugify }}">{% if paper.links.first.url %}<a href="{{ paper.links.first.url | escape }}" target="_blank" rel="noopener noreferrer">{{ paper.title | escape }}</a>{% else %}{{ paper.title | escape }}{% endif %}</h3>
           <div class="paper-authors">{{ paper.authors | markdownify }}</div>
-          {% if paper.summary and paper.summary != '' %}<div class="paper-summary">{{ paper.summary | markdownify }}</div>{% endif %}
+          <p class="paper-citations mono" data-scholar-id="{{ paper.scholar_id | escape }}" data-paper-title="{{ paper.title | escape }}" data-citation-updated="{{ paper.citations_updated | escape }}">
+            {% if paper.scholar_id and paper.scholar_id != '' %}<a href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;citation_for_view={{ paper.scholar_id | url_encode }}" target="_blank" rel="noopener noreferrer" title="View this paper on Google Scholar">{% else %}<span title="No verified Google Scholar citation count available yet">{% endif %}Citations: <span data-citation-count>{% if paper.citations != nil %}{{ paper.citations }}{% else %}—{% endif %}</span>{% if paper.scholar_id and paper.scholar_id != '' %}</a>{% else %}</span>{% endif %}
+            <time data-citation-date{% if paper.citations_updated and paper.citations_updated != '' %} datetime="{{ paper.citations_updated }}">as of {{ paper.citations_updated | date: '%b %-d, %Y' }}{% else %} hidden>{% endif %}</time>
+          </p>
           {% if paper.links.size > 0 %}
             <div class="paper-links" aria-label="Resources for {{ paper.title | escape }}">
               {% for link in paper.links %}<a href="{{ link.url | escape }}" target="_blank" rel="noopener noreferrer">{{ link.label | escape }} <span aria-hidden="true">↗</span></a>{% endfor %}

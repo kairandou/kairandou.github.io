@@ -44,9 +44,11 @@
   authors: 'First Author\*, **Kairan Dou**, Other Author'
   venue: "Conference / Journal / arXiv"
   year: 2026
+  scholar_id: ""
+  citations: null
+  citations_updated: ""
   image: "/images/paper.png"
   image_alt: "图片内容的简短描述"
-  summary: "可选的一句话介绍。"
   links:
     - label: "Paper"
       url: "https://example.com/paper"
@@ -54,9 +56,19 @@
       url: "https://github.com/owner/repository"
 ```
 
-`id` 必须唯一，用小写英文、数字和连字符。作者字段支持 Markdown；用 `**Kairan Dou**` 突出本人，等贡献星号写成 `\*`，此时使用示例中的单引号或 `>-` 长文本写法，避免 YAML 双引号的转义规则。论文介绍 `summary` 可留空或省略，链接可按需要添加 Project、Code、PDF 等。
+`id` 必须唯一，用小写英文、数字和连字符。作者字段支持 Markdown；用 `**Kairan Dou**` 突出本人，等贡献星号写成 `\*`，此时使用示例中的单引号或 `>-` 长文本写法，避免 YAML 双引号的转义规则。论文只展示主图和标题、作者、发表信息、引用数、资源入口，不填写或显示介绍段落。链接可按需要添加 Project、Code 等。
 
 配图放在 `images/`，使用 `/images/paper.png` 这样的根相对路径。图片按原始比例完整显示，点击可放大；无需预先裁成固定尺寸。没有配图时将 `image` 和 `image_alt` 留空即可。
+
+论文的 Paper 链接统一使用 `https://arxiv.org/abs/论文编号`。尚无公开入口时填写 `links: []`，标题保持纯文本，也不生成空的 Paper 按钮。
+
+### 每篇论文的引用数
+
+`scholar_id` 填 Google Scholar 论文详情页 URL 中 `citation_for_view=` 后的完整 ID，例如 `tWcg0ZsAAAAJ:u-x6o8ySG0sC`。`citations` 与 `citations_updated` 保存已核对的引用数和日期，例如 `159` 与 `"2026-11-05"`；未核对时填 `null` 和 `""`。未知不等于 0，网页显示 `Citations: —`。
+
+网页加载后读取仓库 `google-scholar-stats` 分支的 `gs_data.json`，有更新时显示新数字和抓取日期。优先按 Scholar ID 匹配；新论文未填写 ID 时，只接受唯一且完整标题一致的记录，不将同名新版本的引用数混用。网络失败、字段无效或数据比页面快照更旧时，保留已核验快照。
+
+仓库的 **Get Citation Data** 工作流负责定时更新，也可在 GitHub Actions 手动触发。Scholar ID 是公开标识，默认为当前主页作者；工作流无需为这个默认值配置 secret。Google Scholar 可能临时限制抓取，失败不会把旧数字覆写成 0。仓库私有时，浏览器无法匿名读取统计分支，但页面静态快照仍正常显示。引用核验来源与新论文配图见[论文素材说明](paper-sources.md)。
 
 ## 添加实习
 
