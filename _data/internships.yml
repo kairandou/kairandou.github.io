@@ -1,9 +1,9 @@
-- organization: "ByteDance Seed"
-  role: "Seed Robotics | Embodied AI Data Intern"
-  start: "2026-10"
-  end: null
-  logo: "/images/companies/bytedance-seed.png"
-  url: "https://seed.bytedance.com/"
+# - organization: "ByteDance Seed"
+#   role: "Seed Robotics | Embodied AI Data Intern"
+#   start: "2026-10"
+#   end: null
+#   logo: "/images/companies/bytedance-seed.png"
+#   url: "https://seed.bytedance.com/"
 
 - organization: "Meituan"
   role: "Embodied AI Algorithm Intern"
