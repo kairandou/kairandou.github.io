@@ -17,7 +17,7 @@
     "Large Language Model"
   ],
   "email_domain": "@cmu.edu",
-  "citedby": 205,
+  "citedby": 208,
   "publications": {
     "tWcg0ZsAAAAJ:u-x6o8ySG0sC": {
       "container_type": "Publication",
@@ -29,7 +29,7 @@
       },
       "filled": false,
       "author_pub_id": "tWcg0ZsAAAAJ:u-x6o8ySG0sC",
-      "num_citations": 163,
+      "num_citations": 166,
       "citedby_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=6590833383713825866,16718594066122674605",
       "cites_id": [
         "6590833383713825866",
@@ -93,14 +93,14 @@
       "num_citations": 0
     }
   },
-  "citedby5y": 205,
+  "citedby5y": 208,
   "hindex": 3,
   "hindex5y": 3,
   "i10index": 3,
   "i10index5y": 3,
   "cites_per_year": {
     "2025": 35,
-    "2026": 170
+    "2026": 173
   },
-  "updated": "2026-11-13T15:47:00Z"
+  "updated": "2026-11-17T17:11:52Z"
 }
