@@ -5,5 +5,12 @@
   </div>
   <div class="section-content biography">
     {% for paragraph in profile.bio %}{{ paragraph | markdownify }}{% endfor %}
+    {% if profile.research_opportunity.title and profile.research_opportunity.title != '' %}
+      <aside class="research-opportunity" aria-labelledby="opportunity-title">
+        <h3 id="opportunity-title">{{ profile.research_opportunity.title | escape }}</h3>
+        <p>{{ profile.research_opportunity.description | escape }}</p>
+        {% if profile.contact %}<a class="opportunity-link" href="#contact">Get in touch</a>{% endif %}
+      </aside>
+    {% endif %}
   </div>
 </section>

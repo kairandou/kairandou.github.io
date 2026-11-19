@@ -14,6 +14,7 @@
       {% for link in profile.links %}
         <a href="{{ link.url | escape }}"{% unless link.url contains 'mailto:' %} target="_blank" rel="noopener noreferrer"{% endunless %}>{{ link.label | escape }} <span aria-hidden="true">↗</span></a>
       {% endfor %}
+      {% if profile.contact.wechat_qr and profile.contact.wechat_qr != '' %}<a href="#contact">WeChat</a>{% endif %}
     </div>
   </div>
   <figure class="hero-portrait">

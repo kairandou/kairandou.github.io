@@ -1,0 +1,36 @@
+{% if profile.contact %}
+{% assign email_link = profile.links | where: "label", "Email" | first %}
+<section class="content-section contact-section" id="contact" aria-labelledby="contact-title">
+  <div class="section-label">
+    <span class="section-index mono">CONTACT</span>
+    <h2 id="contact-title">{{ profile.contact.title | escape }}</h2>
+  </div>
+  <div class="contact-content">
+    <div class="contact-copy">
+      <p>{{ profile.contact.message | escape }}</p>
+      {% if email_link.url and email_link.url != '' %}
+        <a class="contact-email" href="{{ email_link.url | escape }}">{{ email_link.url | remove_first: 'mailto:' | escape }}</a>
+      {% endif %}
+      {% if profile.contact.wechat_qr and profile.contact.wechat_qr != '' %}
+        <div class="wechat-instructions">
+          <h3>Connect on WeChat</h3>
+          {% if profile.contact.wechat_id and profile.contact.wechat_id != '' %}
+            <p class="wechat-id">WeChat ID: <strong>{{ profile.contact.wechat_id | escape }}</strong></p>
+            <p>If the QR code has expired, search for this WeChat ID to add me.</p>
+          {% endif %}
+          <p>Scan the QR code in WeChat. On your phone, save the image and select it from your photo library in WeChat's scanner.</p>
+          <a class="contact-download" href="{{ profile.contact.wechat_qr | relative_url }}" download="kairan-dou-wechat.jpg">Save QR code</a>
+        </div>
+      {% endif %}
+    </div>
+    {% if profile.contact.wechat_qr and profile.contact.wechat_qr != '' %}
+      <figure class="wechat-card">
+        <a class="wechat-image-link" href="{{ profile.contact.wechat_qr | relative_url }}" target="_blank" rel="noopener noreferrer" aria-label="Open full-size WeChat QR code (opens in a new tab)">
+          <img src="{{ profile.contact.wechat_qr | relative_url }}" width="{{ profile.contact.wechat_qr_width }}" height="{{ profile.contact.wechat_qr_height }}" alt="{{ profile.contact.wechat_qr_alt | escape }}" loading="lazy" decoding="async">
+        </a>
+        <figcaption>WeChat · Click the image to open full size</figcaption>
+      </figure>
+    {% endif %}
+  </div>
+</section>
+{% endif %}

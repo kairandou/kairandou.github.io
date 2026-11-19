@@ -74,6 +74,25 @@ a:focus-visible, button:focus-visible { outline: 3px solid #378570; outline-offs
 .biography > p + p { margin-top: 18px; }
 .biography a { color: var(--link); text-decoration: underline; text-decoration-color: #80b5a3; }
 .biography strong { font-weight: 600; color: var(--ink); }
+.research-opportunity { margin-top: 26px; padding: 20px 24px; border-left: 3px solid #378570; background: #edf5ef; font-size: 16px; line-height: 1.75; }
+.research-opportunity h3 { font-size: 18px; color: var(--link); margin-bottom: 8px; }
+.opportunity-link { display: inline-flex; align-items: center; min-height: 44px; margin-top: 8px; font-weight: 600; }
+.contact-section { margin-top: 12px; border-top: 1px solid var(--line); border-bottom: 0; }
+.contact-content { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 32px; align-items: start; }
+.contact-copy { min-width: 0; color: var(--secondary); font-size: 16px; line-height: 1.8; }
+.contact-email, .contact-download { display: inline-flex; align-items: center; min-height: 44px; color: var(--link); text-decoration: underline; text-decoration-color: #80b5a3; }
+.contact-email { margin-top: 14px; overflow-wrap: anywhere; }
+.wechat-instructions { margin-top: 26px; }
+.wechat-instructions h3 { color: var(--ink); font-size: 18px; margin-bottom: 9px; }
+.wechat-instructions p { font-size: 16px; }
+.wechat-instructions p + p { margin-top: 10px; }
+.wechat-id strong { color: var(--ink); font-family: var(--mono); user-select: all; }
+.contact-download { margin-top: 10px; padding: 8px 14px; border: 1px solid #94b4a5; border-radius: 4px; text-decoration: none; font-size: 14px; }
+.contact-download:hover { background: #edf5ef; text-decoration: none; }
+.wechat-card { width: 280px; max-width: 100%; }
+.wechat-image-link { display: block; background: #fff; border: 1px solid var(--line); border-radius: 6px; }
+.wechat-image-link img { width: 100%; height: auto; }
+.wechat-card figcaption { margin-top: 10px; color: var(--muted); font-size: 14px; line-height: 1.6; text-align: center; }
 .education-list, .internship-list { display: grid; gap: 28px; }
 .education-entry { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 25px; align-items: center; padding-block: 4px; }
 .internship-entry { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 25px; align-items: center; padding-block: 4px; }
@@ -222,6 +241,7 @@ html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='
 }
 
 @media (max-width: 900px) {
+  .contact-content { grid-template-columns: minmax(0, 1fr); gap: 24px; }
   .page-width { width: calc(100% - 64px); }
   .hero { grid-template-columns: minmax(0, 1fr) 240px; gap: 38px; padding-block: 60px; }
   .hero h1 { font-size: 63px; }
@@ -239,6 +259,8 @@ html[data-motion='off'] *, html[data-motion='off'] *::before, html[data-motion='
 }
 
 @media (max-width: 640px) {
+  .research-opportunity { padding: 18px; }
+  .wechat-card { width: 320px; justify-self: center; }
   .page-width { width: calc(100% - 40px); }
   .site-header { min-height: 76px; gap: 16px; }
   .site-nav { gap: 14px; font-size: 11px; }

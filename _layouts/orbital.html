@@ -34,6 +34,7 @@
           <a href="#education">Education</a>
           {% if site.data.internships.size > 0 %}<a href="#internships">Internships</a>{% endif %}
           <a href="#papers">Papers</a>
+          {% if profile.contact %}<a href="#contact">Contact</a>{% endif %}
         </nav>
       </header>
       {% include orbital/hero.html %}
@@ -43,6 +44,7 @@
       {% include orbital/education.html %}
       {% include orbital/internships.html %}
       {% include orbital/papers.html %}
+      {% include orbital/contact.html %}
       {{ content }}
     </main>
     <footer class="site-footer page-width">

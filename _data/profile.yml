@@ -20,6 +20,23 @@ bio:
     I completed my undergraduate studies at
     [Nankai University](https://www.nankai.edu.cn/) and was an exchange student at
     [UC Berkeley](https://www.berkeley.edu/).
+research_opportunity:
+  title: "Seeking research opportunities"
+  description: >-
+    I'm currently looking for research opportunities in embodied AI,
+    particularly in vision-language-action models, reinforcement learning,
+    and post-training.
+contact:
+  title: "Let's connect"
+  message: >-
+    I'd love to connect with researchers and teams working on embodied AI.
+    If you have a research opportunity or would like to exchange ideas,
+    please feel free to reach out by email or add me on WeChat.
+  wechat_id: "Darkeyes-"
+  wechat_qr: "/images/contact/wechat-qr.jpg"
+  wechat_qr_width: 888
+  wechat_qr_height: 1131
+  wechat_qr_alt: "WeChat QR code for contacting Kairan Dou"
 links:
   - label: "Email"
     url: "mailto:kairandou@cmu.edu"

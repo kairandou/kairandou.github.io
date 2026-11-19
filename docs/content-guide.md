@@ -1,8 +1,8 @@
 # 主页内容维护
 
-> 适用：Kairan Dou 个人主页 · 更新：2026-11-05
+> 适用：Kairan Dou 个人主页 · 更新：2026-11-19
 
-页面分为 **About、Education、Internships、Papers**。日常更新只改 `_data/` 中的内容文件，不需要编辑 HTML 或 CSS。教育与实习按开始日期倒序排列；论文按文件中的顺序展示，新增论文通常放在最前面。教育只展示学校、学习阶段和时间；实习只展示公司、岗位和时间，不展示项目职责或研究经历。
+页面分为 **About、Education、Internships、Papers、Contact**。日常更新只改 `_data/` 中的内容文件，不需要编辑 HTML 或 CSS。教育与实习按开始日期倒序排列；论文按文件中的顺序展示，新增论文通常放在最前面。教育只展示学校、学习阶段和时间；实习只展示公司、岗位和时间，不展示项目职责或研究经历。
 
 | 要修改的内容 | 文件 |
 | --- | --- |
@@ -16,6 +16,14 @@
 `bio` 中每个 `- >-` 是一个自然段，支持 Markdown 链接和 `**加粗**`。`research_interests` 是研究方向列表；联系方式在 `links` 中填写。头像放入 `images/`，然后修改 `portrait`，并填写照片实际像素宽高 `portrait_width` 和 `portrait_height`。当前头像为 `/images/profile-left-clean-v2.png`（1254 × 1254），使用内置 imagegen 清除左侧门、门框及设施，并延续原米黄色墙面。原图和历史清晰化版本 v1 均已保留，切换与回退方法见[视觉素材说明](visual-assets.md)。
 
 现有简介、教育、实习和邮箱根据 2026 年 11 月提供的简历更新；邮箱为 CMU 邮箱。CMU 项目于 2027 年 1 月开始，因此当前写为即将入学，不写为已在读。入学后请同步更新简介和教育条目的 `status`。旧 `_data/experience.yml` 仅留作历史数据，当前模板不读取它。
+
+## 科研机会与微信联系
+
+在 `_data/profile.yml` 中编辑 `research_opportunity.title` 和 `description`，即可更新简介下方的科研机会说明；将 `title` 设为 `""` 可隐藏这条说明。
+
+`contact.title` 和 `message` 控制页尾联系文案；`wechat_id` 填写可搜索的微信号（当前为 `Darkeyes-`），二维码过期时访客仍可用它添加。微信二维码放在 `images/contact/`，修改 `wechat_qr` 及实际宽高 `wechat_qr_width` / `wechat_qr_height` 即可替换；`wechat_qr_alt` 是图片替代文字。当前使用用户提供的 `IMG_4711.JPG` 原图，未裁切或重新生成，保留完整二维码。页面支持打开原图、保存原图；邮箱复用 `links` 中的 Email，避免重复维护。
+
+将 `wechat_qr` 设为 `""` 可隐藏微信入口与图片、保留邮箱联系；移除整个 `contact` 配置即可隐藏联系板块及对应导航。
 
 ## 添加教育经历
 
